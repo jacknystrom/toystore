@@ -12,11 +12,11 @@
 	 */
 	function get_order_info(PDO $pdo, string $email, string $orderNum) {
 		// SQL query to retrieve order and customer information
-		$sql = "SELECT customer.custname, customer.username, orders.ordernum, orders.quantity, 
+		$sql = "SELECT customer.cname, customer.username, orders.ordernum, orders.quantity, 
 					   orders.date_ordered, orders.date_deliv
 				FROM orders
-				JOIN customer ON orders.custnuim = customer.custnum
-				WHERE customer.email = :email AND orders.orderum = :orderNum";
+				JOIN customer ON orders.custnum = customer.custnum
+				WHERE customer.email = :email AND orders.ordernum = :orderNum";
 		
 		// Execute the query and fetch the result
 		return pdo($pdo, $sql, ['email' => $email, 'orderNum' => $orderNum])->fetch();
@@ -112,7 +112,7 @@
 				  		  -- TO DO: Fill in ALL the placeholders for this order from the db
   						  -->
 						<h1>Order Details</h1>
-						<p><strong>Name: </strong> <?= $order['name'] ?></p>
+						<p><strong>Name: </strong> <?= $order['cname'] ?></p>
 				        	<p><strong>Username: </strong> <?= $order['username'] ?></p>
 				        	<p><strong>Order Number: </strong> <?= $order['ordernum'] ?></p>
 				        	<p><strong>Quantity: </strong> <?= $order['quantity'] ?></p>
